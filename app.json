@@ -18,7 +18,8 @@
     "pages/editPersonInfo/editPersonInfo",
     "pages/systemInfo/systemInfo",
     "pages/about/about",
-    "pages/location/location"
+    "pages/location/location",
+    "pages/login/login"
   ],
   "window": {
     "navigationBarBackgroundColor": "#47a86c",
@@ -27,6 +28,11 @@
     "backgroundColor": "#fff",
     "backgroundTextStyle": "dark",
     "enablePullDownRefresh": true
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
   },
   "tabBar": {
     "color": "#686868",

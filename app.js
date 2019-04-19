@@ -4,29 +4,15 @@ App({
     userInfo: null
   },
   onLaunch: function() {
-    // 获取用户信息
-    this.getUserInfo()
     //初始化缓存
     this.initStorage()
   },
-  getUserInfo:function(cb){
-    var that = this
-    wx.login({
-      success: function () {
-        wx.getUserInfo({
-          success: function (res) {
-            that.globalData.userInfo = res.userInfo
-            typeof cb == "function" && cb(that.globalData.userInfo)
-          }
-        })
-      }
-    })
-  },
+
   getCity: function(cb) {
     var that = this
     wx.getLocation({
       type: 'gcj02',
-      success: function (res) {
+      success: function(res) {
         var locationParam = res.latitude + ',' + res.longitude + '1'
         wx.request({
           url: config.apiList.baiduMap,
@@ -37,9 +23,9 @@ App({
             pois: '1'
           },
           method: 'GET',
-          success: function(res){
-            config.city = res.data.result.addressComponent.city.slice(0,-1)
-            typeof cb == "function" && cb(res.data.result.addressComponent.city.slice(0,-1))
+          success: function(res) {
+            config.city = res.data.result.addressComponent.city.slice(0, -1)
+            typeof cb == "function" && cb(res.data.result.addressComponent.city.slice(0, -1))
           },
           fail: function(res) {
             // 重新定位
@@ -82,16 +68,16 @@ App({
         }
         // 个人信息默认数据
         var personInfo = {
-          name: '',
-          nickName: '',
+          name: 'nickname',
+          nickName: 'panda',
           gender: '',
-          age: '',
-          birthday: '',
+          age: '21',
+          birthday: '23',
           constellation: '',
           company: '',
           school: '',
           tel: '',
-          email:'',
+          email: '',
           intro: ''
         }
         // 判断个人信息是否存在，没有则创建
